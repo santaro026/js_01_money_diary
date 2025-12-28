@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>money diary</title>
+        <link rel="stylesheet" href="assets/css/sanitize.css">
+        <link rel="stylesheet" href="assets/css/base.css">
+
+    </head>
+
+    <body>
+        <header>
+        </header>
+
+        <main>
+            <h1>money diary</h1>
+            <p>result: <span id="result"></span></p>
+            <label>Date: <input type="date" id="date"></label><br>
+            <label>Category: 
+                <select id="category">
+                    <option value="food">food</option>
+                    <option value="transportation">transportation</option>
+                    <option value="leisure">leisure</option>
+                </select>
+            </label><br>
+
+            <span id="temp_amount"></span>
+            <span id="temp_operator"></span><br>
+            <label>Amount: <input type="number" id="amount2" min="0"></label>
+
+            <!-- modal window for calculator -->
+            <button id="modalOpen" class="button-modal">calc</button><br>
+            <div id="calcModal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1>calc</h1> <!-- editing -->
+                        <span id="modalClose" class="modal-close">&#10060</span>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <label>equation: <input type="text" id="equation"></label>
+                            <input tyep="text" id="calculator-equation">
+                            <input type="number" id="calculator-amount" min="0">
+                        </div>
+                        <div class="calculator"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <label>Note: <input type="text" id="note"></label><br>
+            <!-- <input type="tel" inputmode="numeric" pattern="[0-9]*" id="amount"> -->
+
+            <!-- <div id="calculator">
+            </div> -->
+
+            <!-- <iframe src="partials/calculator.html" width="100%" height="100%"></iframe> -->
+
+            <button class="button" onclick="addExpense()">add</button><br>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>date</th>
+                        <th>category</th>
+                        <th>amount</th>
+                        <th>note</th>
+                    </tr>
+                </thead>
+                <tbody id="expense-list"></tbody>
+            </table>
+
+            <p id="total-amount">Total: &yen0</p>
+
+            <!-- <button class="button" onclick="saveToLocalstorage()">save</button><br> -->
+
+            <button class="button" onclick="exportCSV(JSON.parse(localStorage.getItem('expenses')))">export csv</button>
+
+        </main>
+
+        <footer>
+        </footer>
+
+        <script src="assets/js/main.js"></script>
+
+    </body>
+</html>
+
+
