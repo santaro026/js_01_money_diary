@@ -9,10 +9,3 @@ console.log(b);
 
 
 
-function myFirstGas() {
-    const sheet = SpreadsheetApp.getActiveShett();
-    sheet.getRange("A1").setValue("hello gas")
-}
-
-myFirstGas();
-

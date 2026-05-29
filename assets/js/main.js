@@ -132,7 +132,7 @@ function addExpenses() {
             item.querySelector(".note").value = "";
         }
     });
-    
+
     if (added) {
         localStorage.setItem("myFinanceData", JSON.stringify(financeRecords));
         renderMonthlyRecords();
@@ -169,11 +169,11 @@ function deleteRecord(rowElement) {
         amount: rowElement.cells[2].textContent.replace(/,/g, ''),
         note: rowElement.cells[3].textContent
     };
-    
-    const matchedRecordIndex = financeRecords.findIndex(recordItem => 
-        recordItem.datetime === targetRecordData.datetime && 
-        recordItem.category === targetRecordData.category && 
-        recordItem.amount == targetRecordData.amount && 
+
+    const matchedRecordIndex = financeRecords.findIndex(recordItem =>
+        recordItem.datetime === targetRecordData.datetime &&
+        recordItem.category === targetRecordData.category &&
+        recordItem.amount == targetRecordData.amount &&
         recordItem.note === targetRecordData.note
     );
 
@@ -189,11 +189,11 @@ window.exportCSV = function() {
         alert("No records to export.");
         return;
     }
-    
+
     const csvRows = [
         ["Date", "Category", "Amount", "Note"].join(",")
     ];
-    
+
     financeRecords.forEach(recordItem => {
         csvRows.push([
             recordItem.datetime,
@@ -202,7 +202,7 @@ window.exportCSV = function() {
             `"${recordItem.note.replace(/"/g, '""')}"`
         ].join(","));
     });
-    
+
     const csvString = csvRows.join("\n");
     const blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
@@ -217,7 +217,7 @@ window.exportCSV = function() {
 
 function formatDateTime(dateTimeStr) {
     if (!dateTimeStr) return "";
-    return dateTimeStr.replace("-", "/").replace("-", "/").replace("-", " ");
+    return dateTimeStr.slice(6).replace("-", "/").replace("-", " ");
 }
 
 function updateEntryTotal() {
