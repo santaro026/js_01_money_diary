@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>all history - money diary</title>
+    <link rel="stylesheet" href="../assets/css/sanitize.css">
+    <link rel="stylesheet" href="../assets/css/base.css">
+</head>
+<body>
+    <header>
+        <h1>Full History</h1>
+    </header>
+    <main>
+        <div style="margin-bottom: 1rem;">
+            <a href="../index.html" class="button button-secondary">&larr; Back to Entry</a>
+        </div>
+
+        <div class="report-container">
+            <div class="report-tabs">
+                <button class="tab-button active" data-tab="history">All History</button>
+                <button class="tab-button" data-tab="weekly">Weekly Report</button>
+                <button class="tab-button" data-tab="monthly">Monthly Report</button>
+                <button class="tab-button" data-tab="yearly">Yearly Report</button>
+            </div>
+
+            <div class="tab-content active" id="tab-history">
+                <div style="overflow-x: auto;">
+                    <table id="history">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Category</th>
+                                <th>Amount</th>
+                                <th>Note</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="full-history-list"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="tab-content" id="tab-weekly">
+                <div class="cards-grid" id="weekly-report-list"></div>
+            </div>
+
+            <div class="tab-content" id="tab-monthly">
+                <div class="cards-grid" id="monthly-report-list"></div>
+            </div>
+
+            <div class="tab-content" id="tab-yearly">
+                <div class="cards-grid" id="yearly-report-list"></div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p style="text-align: center; color: #777; margin: 2rem 0;">&copy; 2026 money diary</p>
+    </footer>
+    <script type="module" src="../assets/js/datatable.js"></script>
+</body>
+</html>

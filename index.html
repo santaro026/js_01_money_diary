@@ -1,89 +1,97 @@
 <!DOCTYPE html>
 <html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>money diary</title>
-        <link rel="stylesheet" href="assets/css/sanitize.css">
-        <link rel="stylesheet" href="assets/css/base.css">
 
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>money diary - household account book</title>
+    <link rel="stylesheet" href="./assets/css/sanitize.css">
+    <link rel="stylesheet" href="./assets/css/base.css">
+</head>
 
-    <body>
-        <header>
-        </header>
+<body>
+    <header>
+        <h1>money diary</h1>
+    </header>
 
-        <main>
-            <h1>money diary</h1>
-            <p>result: <span id="result"></span></p>
-            <label>Date: <input type="date" id="date"></label><br>
-            <label>Category: 
-                <select id="category">
-                    <option value="food">food</option>
-                    <option value="transportation">transportation</option>
-                    <option value="leisure">leisure</option>
-                </select>
-            </label><br>
-
-            <span id="temp_amount"></span>
-            <span id="temp_operator"></span><br>
-            <label>Amount: <input type="number" id="amount2" min="0"></label>
-
-            <!-- modal window for calculator -->
-            <button id="modalOpen" class="button-modal">calc</button><br>
-            <div id="calcModal" class="modal">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1>calc</h1> <!-- editing -->
-                        <span id="modalClose" class="modal-close">&#10060</span>
-                    </div>
-                    <div class="modal-body">
-                        <div>
-                            <label>equation: <input type="text" id="equation"></label>
-                            <input tyep="text" id="calculator-equation">
-                            <input type="number" id="calculator-amount" min="0">
-                        </div>
-                        <div class="calculator"></div>
-                    </div>
-                </div>
+    <main>
+        <div class="summary-container">
+            <div class="summary-card">
+                <h3>Monthly Total</h3>
+                <p id="amount-month">0</p>
             </div>
-            
-            <label>Note: <input type="text" id="note"></label><br>
-            <!-- <input type="tel" inputmode="numeric" pattern="[0-9]*" id="amount"> -->
 
-            <!-- <div id="calculator">
-            </div> -->
+            <div class="summary-card">
+                <a href="./partials/database.html" class="button button-secondary">View History</a>
+            </div>
+        </div>
 
-            <!-- <iframe src="partials/calculator.html" width="100%" height="100%"></iframe> -->
+        <div id="entry-container">
+            <div class="date-time-inputs">
+                <label>Date: <input type="date" id="date"></label>
+                <label>Time: <input type="time" id="time"></label>
+            </div>
 
-            <button class="button" onclick="addExpense()">add</button><br>
+            <div class="entry-row entry-item">
+                <div class="entry-item-fields">
+                    <label>Category:
+                        <select class="category">
+                            <option value="food">food</option>
+                            <option value="entertainment">entertainment</option>
+                            <option value="leisure">leisure</option>
+                            <option value="transportation">transportation</option>
+                            <option value="furniture">furniture</option>
+                            <option value="utility">utility</option>
+                            <option value="others">others</option>
+                        </select>
+                    </label>
+                    <label>Amount: <input type="number" class="amount" min="0" placeholder="0"></label>
+                    <label>Note: <input type="text" class="note" placeholder="Optional note"></label>
+                    <button id="modal-open" class="button-modal" type="button">calc</button>
+                </div>
+                <div class="modal calc-modal"></div>
+            </div>
 
-            <table>
+            <div id="entry-total-container">
+                <span>Total Item Amount: </span>
+                <span id="entry-total-amount">0</span>
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 1rem; margin-bottom: 2rem;">
+            <button type="button" id="add-entry-row" class="button button-secondary">+ Add Item</button>
+            <button id="button-add" class="button">Save Records</button>
+        </div>
+
+        <h2 id="current-month-header">Current Month History</h2>
+        <div style="overflow-x: auto;">
+            <table id="history">
                 <thead>
                     <tr>
-                        <th>date</th>
-                        <th>category</th>
-                        <th>amount</th>
-                        <th>note</th>
+                        <th>Date</th>
+                        <th>Category</th>
+                        <th>Amount</th>
+                        <th>Note</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
-                <tbody id="expense-list"></tbody>
+                <tbody id="history-list"></tbody>
             </table>
+        </div>
 
-            <p id="total-amount">Total: &yen0</p>
+        <div style="margin-top: 2rem; text-align: center;">
+            <button class="button button-secondary" onclick="exportCSV()">Export CSV</button>
+        </div>
 
-            <!-- <button class="button" onclick="saveToLocalstorage()">save</button><br> -->
+    </main>
 
-            <button class="button" onclick="exportCSV(JSON.parse(localStorage.getItem('expenses')))">export csv</button>
+    <footer>
+        <p style="text-align: center; color: #777; margin: 2rem 0;">&copy; 2026 money diary</p>
+    </footer>
 
-        </main>
+    <script type="module" src="assets/js/main.js"></script>
+    <script type="module" src="assets/js/calculator.js"></script>
 
-        <footer>
-        </footer>
+</body>
 
-        <script src="assets/js/main.js"></script>
-
-    </body>
 </html>
-
-
